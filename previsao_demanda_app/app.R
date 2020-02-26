@@ -17,12 +17,11 @@ ui <- fluidPage(
                      column(12, align="center", tableOutput("pif")),
                      br(),
                      br(),
-                     hr()
+                     br(),
+                     br(),
+                     br()
         ),
         mainPanel(width = 9,
-                  br(),
-                  br(),
-                  br(),
                   plotOutput("plot"),
         )
     )
