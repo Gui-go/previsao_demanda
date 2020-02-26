@@ -76,8 +76,8 @@ server <- function(input, output) {
     
     output$plot <- renderPlot({
         sq2 <- serie_quandl()
-        sqts <- ts(sq2[,2], start = c(as.numeric(substring(sq2[1,1],1,4)), as.numeric(substring(sq2[1,1],6,7))), frequency = 12)
-        tsa <- auto.arima(sqts[input$slider_serv[1]:input$slider_serv[2]], seasonal = T, trace = F, ic = input$crit_eval)
+        sqts <- ts(sq2[input$slider_serv[1]:input$slider_serv[2],2], start = c(as.numeric(substring(sq2[1,1],1,4)), as.numeric(substring(sq2[1,1],6,7))), frequency = 12)
+        tsa <- auto.arima(sqts, seasonal = T, trace = F, ic = input$crit_eval)
         ff <- forecast(tsa, h=6)
         autoplot(ff, ts.colour = 'firebrick1', predict.colour = 'red',
                  predict.linetype = 'dashed', conf.int = T)+
